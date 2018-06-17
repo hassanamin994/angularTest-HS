@@ -4,10 +4,10 @@
   <h1>AngularTest</h1>
 
   <ul>
-    <li>
+    <li [routerLinkActive]="'active'" >
       <a [routerLink]="['/', 'view1']">View1</a>
     </li>
-    <li>
+    <li [routerLinkActive]="'active'">
       <a [routerLink]="['/', 'view2']">View2</a>
     </li>
   </ul>
