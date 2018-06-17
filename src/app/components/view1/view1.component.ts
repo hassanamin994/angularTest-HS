@@ -16,9 +16,10 @@ export class View1Component implements OnInit {
   constructor(private _valueService: ValueService) { }
 
   ngOnInit() {
-    this.minValue = this.value = this._valueService.minValue;
+    this.minValue = this._valueService.minValue;
     this.maxValue = this._valueService.maxValue;
     this.step = this._valueService.step;
+    this.value = this._valueService.getDataValue('value') || 0;
     this.initValueSubscription();
   }
 
@@ -28,10 +29,9 @@ export class View1Component implements OnInit {
     })
   }
 
-  onValueChange(sliderChange: MatSliderChange) {
+  onValueInputChange(sliderChange: MatSliderChange) {
     const { value } = sliderChange;
     this._valueService.notifyDataChanged('value', value)
   }
-
 
 }

@@ -1,3 +1,10 @@
-<p>
-  view2 works!
-</p>
+<div class="view-container">
+  <h1>View 2</h1>
+  <mat-slider 
+    [min]="minValue" 
+    [max]="maxValue" 
+    [step]="step" 
+    [value]="value" 
+    (input)="onValueInputChange($event)"   
+  ></mat-slider> {{value}}  
+</div>

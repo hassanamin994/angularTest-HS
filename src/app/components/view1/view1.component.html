@@ -1,10 +1,10 @@
-<p>
-  view1 works!
+<div class="view-container">
+  <h1>View 1</h1>
   <mat-slider 
     [min]="minValue" 
     [max]="maxValue" 
     [step]="step" 
     [value]="value" 
-    (change)="onValueChange($event)"   
+    (input)="onValueInputChange($event)"   
   ></mat-slider> {{value}}  
-</p>
+</div>

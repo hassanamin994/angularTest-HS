@@ -48,6 +48,10 @@ export class ValueService {
     this._subscriptions.set(event, subscribers);
   }
 
+  getDataValue(key) {
+    return this._data[key];
+  }
+
   _onEvent(data: any) {
     let subscribers = this._subscriptions.get(data['event']) || [];
     subscribers.forEach((callback) => {
