@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ValueService } from '../../services/value.service';
 import { MatSliderChange } from '@angular/material';
 
@@ -7,7 +7,9 @@ import { MatSliderChange } from '@angular/material';
   templateUrl: './view1.component.html',
   styleUrls: ['./view1.component.css']
 })
-export class View1Component implements OnInit {
+export class View1Component implements OnInit, OnDestroy {
+
+  valueSubscription;
 
   minValue: number;
   maxValue: number;
@@ -24,7 +26,7 @@ export class View1Component implements OnInit {
   }
 
   initValueSubscription() {
-    this._valueService.subscribe('value', (newValue: number) => {
+    this.valueSubscription = this._valueService.subscribe('value', (newValue: number) => {
       this.value = newValue;
     })
   }
@@ -32,6 +34,10 @@ export class View1Component implements OnInit {
   onValueInputChange(sliderChange: MatSliderChange) {
     const { value } = sliderChange;
     this._valueService.notifyDataChanged('value', value)
+  }
+
+  ngOnDestroy() {
+    this.valueSubscription.unsubscribe();
   }
 
 }

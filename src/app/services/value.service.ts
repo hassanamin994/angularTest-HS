@@ -46,6 +46,18 @@ export class ValueService {
     let subscribers = this._subscriptions.get(event) || [];
     subscribers.push(callback);
     this._subscriptions.set(event, subscribers);
+
+    return {
+      unsubscribe: () => {
+        this.unsubscribe(event, callback);
+      }
+    }
+  }
+
+  unsubscribe(event: string, callback: Function) {
+    let subscribers = this._subscriptions.get(event) || [];
+    subscribers.splice(subscribers.indexOf(callback), 1);
+    this._subscriptions.set(event, subscribers);    
   }
 
   getDataValue(key) {
